@@ -1,0 +1,11 @@
+.DS_Store
+.dockerignore
+.git/
+.gitignore
+README.md
+*.pyc
+__pycache__
+db.sqlite3
+Procfile
+runtime.txt
+venv
