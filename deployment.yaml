@@ -1,0 +1,33 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: pyblog
+spec:
+  selector:
+    matchLabels:
+      app:pyblog
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pyblog
+    spec:
+      containers:
+      - name: pyblog
+        image: localhost:5000/pyblog
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pyblog
+  labels:
+    app: pyblog
+spec:
+  type: NodePort
+  ports:
+   - port: 3000
+     targetPort: 8000
+  selector:
+   app: pyblog
