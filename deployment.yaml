@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pyblog
@@ -13,7 +13,7 @@ spec:
       - name: pyblog
         image: bannastre/pyblog:v0.1
         ports:
-        - containerPort: 8000
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -22,9 +22,10 @@ metadata:
   labels:
     app: pyblog
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
-   - port: 3000
-     targetPort: 8000
+   - port: 8080
+     targetPort: 8081
+     nodePort: 3000
   selector:
    app: pyblog
