@@ -1,11 +1,8 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: pyblog
 spec:
-  selector:
-    matchLabels:
-      app:pyblog
   replicas: 1
   template:
     metadata:
@@ -14,7 +11,7 @@ spec:
     spec:
       containers:
       - name: pyblog
-        image: localhost:5000/pyblog
+        image: bannastre/pyblog:v0.1
         ports:
         - containerPort: 8000
 ---
